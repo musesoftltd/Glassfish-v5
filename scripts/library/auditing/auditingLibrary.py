@@ -278,10 +278,10 @@ def auditReport(environment, currentServerName):
 
         appendToReport("\nEnv: " + environment + "\n")
 
-        if (currentAuditReportServer != currentServerName) :
-            currentAuditReportServer = currentServerName
+    if (currentAuditReportServer != currentServerName) :
+        currentAuditReportServer = currentServerName
 
-            appendToReport('Server' + ',')
+        appendToReport('Server' + ',')
 
         for auditObjectAtom in auditObjectAtoms :
             if not(auditObjectAtom.titledAlready):
