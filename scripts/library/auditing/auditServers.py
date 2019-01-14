@@ -2,7 +2,7 @@
 @author: ...
 '''
 from environmentProperties.allEnvs import propertiesExtended as globalProperties
-from library.auditing.auditServerBase import auditServerExtended
+from library.auditing.auditServerExtened import auditServerExtended
 from library.auditing.auditingLibrary import auditReport
 from library.util import gatherThreads, scatterThread
 
