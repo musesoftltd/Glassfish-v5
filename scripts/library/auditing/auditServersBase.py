@@ -5,7 +5,7 @@
 
 from environmentProperties.allEnvs.propertiesExtended import dictionary as globalDictionary
 from library.auditing.auditServerExtened import auditServerExtended
-from library.auditing.auditingLibrary import auditObjectAtom, auditReport, auditObjectAtoms
+from library.auditing.auditingLibrary import auditReport
 from library.util import scatterThread, gatherThreads
 
 

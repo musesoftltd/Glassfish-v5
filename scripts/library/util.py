@@ -3,14 +3,12 @@ Created on 14 Oct 2016
 
 @author: ...
 '''
-from StringIO import StringIO
 import errno
-from java.lang import System, StringBuilder
+from java.lang import StringBuilder
 from java.util import Properties
 import os
 import re
 from string import rsplit
-import sys
 from threading import Thread
 
 from com.jcraft.jsch import JSch

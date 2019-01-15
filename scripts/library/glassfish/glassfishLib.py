@@ -1,5 +1,5 @@
 import array
-from java.lang import Object, String
+from java.lang import String
 from javax.management import ObjectName, Attribute
 import javax.management.remote.JMXConnectorFactory
 import javax.management.remote.JMXServiceURL
@@ -147,8 +147,8 @@ def setParameterValue(servername, cliVector, cliProperty, targetValue, username=
     try:
         cliConnected = getConnection(servername)
         if (cliConnected != None):
-            dealingWithADatasource = False
-            dealingWithAnXaDatasource = False
+#             dealingWithADatasource = False
+#             dealingWithAnXaDatasource = False
             # check for regular datasource...
 #             datasourceName = extractDatasourceName(cliVector)
 #             xaDatasourceName = extractXADatasourceName(cliVector)
@@ -217,7 +217,6 @@ def getParameterValue(servername, port, username, password, cliVector, cliProper
     
     cliConnected = None
     currentValue = ''
-    cliResult = None
 
     if (reloadServerIfRequired) :
         print 'Here we ought to restart/load the server'    
@@ -236,7 +235,6 @@ def getParameterValue(servername, port, username, password, cliVector, cliProper
                     if currentValue:
                         if not(silent): print 'On Server :' + servername + ' retrieved :' + currentValue + '\n'
                     else:
-                        appliedOk = False
                         if not(silent): print 'Command Issue Failure ->' + "getAttribute()" + '<-'
                         if not(silent): print 'On Server :' + servername + ' retrieving :' + cliProperty + ' from CLI Vector :' + cliVector + ' ...FAILED.'                        
                         currentValue = "Unknown"
