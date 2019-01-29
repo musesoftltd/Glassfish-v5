@@ -4,6 +4,6 @@
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Default</pydev_property>
 <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
 <path>/${PROJECT_DIR_NAME}/scripts</path>
-<path>/Glassfish-v5/lib/jsch-0.1.54.jar</path>
+<path>/${PROJECT_DIR_NAME}/lib/jsch-0.1.54.jar</path>
 </pydev_pathproperty>
 </pydev_project>

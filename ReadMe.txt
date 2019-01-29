@@ -6,7 +6,7 @@ This part of the scripting environment will target Glassfish.
 At the top of your script, you should load glassfishLib by
 	using something like this:
 	
-	from library.glassfishLib import *
+	from library.glassfish.glassfishLib import *
   
 You can click the server view, at the bottom of the jee perspective and
 add server. Then choose Oracle and Glassfish related items.
