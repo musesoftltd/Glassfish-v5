@@ -44,7 +44,7 @@ def getReportDirectory():
         try :
             workspaceReportPath = os.environ['WORKSPACE']
             auditReportPath = workspaceReportPath + '\\reports\\'
-            print "Jenkins Environment Workspace Path: " + auditReportPath
+            print "---> Jenkins Environment Workspace Path: " + auditReportPath
         except:
             None
 
