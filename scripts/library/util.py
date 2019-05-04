@@ -250,7 +250,7 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
     channel.setCommand(_command)
  
     outputBuffer = StringBuilder();
- 
+
     stdin = channel.getInputStream();
     stdinExt = channel.getExtInputStream();
  
@@ -277,8 +277,8 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
             outputBuffer.append('|')
         else :
             outputBuffer.append(chr(n))
-  
-    print "Command: " + _command
+                    
+    print "Command on: " + hostname + " : " + _command
     print "\toutput: " + outputBuffer.toString()
     
     channel.disconnect();
