@@ -236,7 +236,7 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
     config.put("StrictHostKeyChecking", "no")
     config.put("GSSAPIAuthentication", "no")
     config.put("UnknownHostVerification", "no")
-    config.put("PreferredAuthentications", "publickey");
+    # config.put("PreferredAuthentications", "publickey");
     session.setConfig(config);
  
     if (sessionTimeoutSecs > 0) : session.setTimeout(sessionTimeoutSecs)
