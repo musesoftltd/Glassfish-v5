@@ -236,18 +236,23 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
     config.put("StrictHostKeyChecking", "no")
     config.put("GSSAPIAuthentication", "no")
     config.put("UnknownHostVerification", "no")
-    # config.put("PreferredAuthentications", "publickey");
+    config.put("PreferredAuthentications", "publickey");
     session.setConfig(config);
  
-    if (sessionTimeoutSecs > 0) : session.setTimeout(sessionTimeoutSecs)
+    if (sessionTimeoutSecs > 0) : session.setTimeout(sessionTimeoutSecs * 10)
+
+    print 'Logging into Remote SSH Shell key Auth...'    
  
     try:
-        session.connect()
+        if (sessionTimeoutSecs > 0) :
+            session.connect(sessionTimeoutSecs * 1000)
+        else:
+            session.connect()            
     except:
         return 'None'
  
     channel = session.openChannel("exec")
-    channel.setCommand(_command)
+    channel.setCommand('source ~/.bash_profile 2>/dev/null; ' + _command)
  
     outputBuffer = StringBuilder();
 
@@ -266,7 +271,7 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
             outputBuffer.append('|')
         else :
             outputBuffer.append(chr(n))
-    
+
     while (1) :
         n = stdinExt.read()
         if n == -1:
@@ -282,6 +287,7 @@ def execSshRemote(hostname, username, identityFileFullPath, identityPassword, co
     print "\toutput: " + outputBuffer.toString()
     
     channel.disconnect();
+    session.disconnect()    
     
     return outputBuffer.toString()
 
@@ -303,22 +309,27 @@ def execSshRemoteUsrPwd(hostname, username, password, commandsSemiColonSeperated
     #config.put("PreferredAuthentications", "publickey");
     session.setConfig(config);
     
-    if (sessionTimeoutSecs > 0) : session.setTimeout(sessionTimeoutSecs)
+    if (sessionTimeoutSecs > 0) : session.setTimeout(sessionTimeoutSecs * 10)
+
+    print 'Logging into Remote SSH Shell u/p Auth...'
     
     try:
-        session.connect()
+        if (sessionTimeoutSecs > 0) :
+            session.connect(sessionTimeoutSecs * 1000)
+        else:
+            session.connect()            
     except:
         return 'None'
     
     channel = session.openChannel("exec")
-    channel.setCommand(_command)
+    channel.setCommand('source ~/.bash_profile 2>/dev/null; ' + _command)
     
     outputBuffer = StringBuilder();
     
     stdin = channel.getInputStream();
     stdinExt = channel.getExtInputStream();
     
-    channel.connect();
+    channel.connect(sessionTimeoutSecs * 1000);
             
     while (1) :
         n = stdin.read()
@@ -342,6 +353,9 @@ def execSshRemoteUsrPwd(hostname, username, password, commandsSemiColonSeperated
         else :
             outputBuffer.append(chr(n))
  
+    print "Command on: " + hostname + " : " + _command
+    print "\toutput: " + outputBuffer.toString()
+
     channel.disconnect();
  
     return outputBuffer.toString()
