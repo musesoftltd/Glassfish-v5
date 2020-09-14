@@ -131,6 +131,7 @@ class auditObjectAtom():
     servername = ""
     username = ""
     password = ""
+    port = 0;
  
     auditTitle = ""
 
