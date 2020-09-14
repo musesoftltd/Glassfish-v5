@@ -139,16 +139,16 @@ def setAttributeConnection(remoteServerConnection, objectNameString, attribute, 
     result = remoteServerConnection.setAttribute(obn, oAttribute)
     return result
 
-def setParameterValue(servername, cliVector, cliProperty, targetValue, username='', password='', reloadServerIfRequired=False):
+def setParameterValue(host, port, cliVector, cliProperty, targetValue, username='', password='', reloadServerIfRequired=0):
     cliConnected = None
-    appliedOk = False
+    appliedOk = 0
     
-    print 'On Server :' + servername + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...'
+    print 'On Server :' + host + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...'
     try:
-        cliConnected = getConnection(servername)
+        cliConnected = getConnection(host, port)
         if (cliConnected != None):
-#             dealingWithADatasource = False
-#             dealingWithAnXaDatasource = False
+#             dealingWithADatasource = 0
+#             dealingWithAnXaDatasource = 0
             # check for regular datasource...
 #             datasourceName = extractDatasourceName(cliVector)
 #             xaDatasourceName = extractXADatasourceName(cliVector)
@@ -169,9 +169,9 @@ def setParameterValue(servername, cliVector, cliProperty, targetValue, username=
                 
                 if cliResult.success:
                     appliedOk = True
-                    print 'On Server :' + servername + ' applied :' + targetValue
+                    print 'On Server :' + host + ' applied :' + targetValue
                 else:
-                    appliedOk = False
+                    appliedOk = 0
                     print 'Command Issue Failure ->' + cliCmd + '<-'
                     print cliResult.getResponse().get("failure-description").asString()
                     print cliResult.getResponse().get("response-headers").asString()
@@ -189,7 +189,7 @@ def setParameterValue(servername, cliVector, cliProperty, targetValue, username=
                 print formatted_lines[0]
                 print formatted_lines[-1]          
     except:
-        appliedOk = False        
+        appliedOk = 0        
         exc_type, exc_value, exc_traceback = sys.exc_info()
         print "*** print_tb:"
         traceback.print_tb(exc_traceback, limit=1, file=sys.stdout)
@@ -199,7 +199,7 @@ def setParameterValue(servername, cliVector, cliProperty, targetValue, username=
         formatted_lines = traceback.format_exc().splitlines()
         print formatted_lines[0]
         print formatted_lines[-1]
-        print 'On Server :' + servername + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...FAILED.'
+        print 'On Server :' + host + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...FAILED.'
     finally:
         if (cliConnected != None) : cliConnected.disconnect()
     
@@ -208,10 +208,10 @@ def setParameterValue(servername, cliVector, cliProperty, targetValue, username=
 #         if isServerReloadRequired(servername, username, password):
 #             reloadServerThenWait(servername, username, password)
         
-    print 'On Server :' + servername + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...end.'
+    print 'On Server :' + host + ' applying ->' + cliProperty + '<- from CLI Vector ->' + cliVector + '<- ...end.'
     return appliedOk 
 
-def getParameterValue(servername, port, username, password, cliVector, cliProperty, reloadServerIfRequired=False, silent = False):
+def getParameterValue(servername, port, username, password, cliVector, cliProperty, reloadServerIfRequired=0, silent = 0):
     retries = 1
     attempts = 0
     

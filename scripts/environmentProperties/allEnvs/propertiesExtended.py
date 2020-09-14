@@ -13,7 +13,7 @@ dictionary = {
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Scheme" : "None",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Version" : "HTTP/1.1",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Adapter" : "org.glassfish.grizzly.http.server.StaticHttpHandler",
-    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. DnsLookupEnabled" : "false",
+    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. DnsLookupEnabled" : "0",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. JkConfigurationFile" : "${com.sun.aas.instanceRoot}/config/glassfish-jk.properties",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. CompressableMimeType" : "text/html,text/xml,text/plain",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. ForcedResponseType" : "None",
@@ -22,7 +22,7 @@ dictionary = {
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. MaxRequestParameters" : "10000",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Http2MaxHeaderListSizeInBytes" : "4096",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. MaxSwallowingInputBytes" : "-1",
-    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Http2DisableCipherCheck" : "false",
+    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. Http2DisableCipherCheck" : "0",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. WebsocketsTimeoutSeconds" : "900",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. MaxFormPostSizeBytes" : "2097152",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. NoCompressionUserAgents" : "None",
@@ -30,17 +30,17 @@ dictionary = {
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. MaxPostSizeBytes" : "-1",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. RemoteUserMapping" : "None",
     "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. UploadTimeoutEnabled" : "true",
-    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. EncodedSlashEnabled" : "false",
+    "amx:pp=/domain/configs/config[default-config]/network-config/protocols/protocol[http-listener-1],type=http. EncodedSlashEnabled" : "0",
     
         
     # security hardening
-    "x-powered-by" : "false",
+    "x-powered-by" : "0",
     "rewrite-pattern" : "^(PUT|HEAD|DELETE|TRACE|TRACK|OPTIONS)$",
     "rewrite-flags" : "NC",
     "Http11Protocol" : "NotAvailable",
     "URI_ENCODING" : "UTF-8",
     "USE_BODY_ENCODING_FOR_QUERY_STRING" : "true",
-    "enable-welcome-root": "false",
+    "enable-welcome-root": "0",
     "sampleWebAlias": "[\"localhost\"]",
     "customServerHeader": "NotAvailable",
     

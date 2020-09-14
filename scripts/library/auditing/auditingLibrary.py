@@ -25,7 +25,7 @@ global currentAuditReportEnvironment
 currentAuditReportEnvironment = ""
 
 global globalReportsStarted
-globalReportsStarted = False
+globalReportsStarted = 0
 
 global auditReportPath
 auditReportPath = ''
@@ -83,13 +83,13 @@ class auditObjectMolecule:
     servername = ''
     auditObjectAtoms = []
     allPassed = True # Assume true and try to disprove
-    somePassed = False
+    somePassed = 0
 
     allMustPass = True
     auditResult = ""
 
-    titledAlready = False
-    reportedAlready = False
+    titledAlready = 0
+    reportedAlready = 0
 
     def __init__(self, auditTitle, servername, bAllMustPass):
         self.auditObjectAtoms = []
@@ -107,17 +107,17 @@ class auditObjectMolecule:
 
         if not(self.reportedAlready) :
             for auditObjectAtom in self.auditObjectAtoms:
-                if (auditObjectAtom.auditPassed == False):
-                    self.allPassed = False
+                if (auditObjectAtom.auditPassed == 0):
+                    self.allPassed = 0
                 else:
                     self.somePassed = True
 
-            if (self.somePassed == False) :
-                self.allPassed = False
+            if (self.somePassed == 0) :
+                self.allPassed = 0
 
             if (self.allPassed):
                 appendToReport('...' + ',')
-            elif ( (self.somePassed) & (self.allMustPass == False)) :
+            elif ( (self.somePassed) & (self.allMustPass == 0)) :
                 appendToReport('...' + ',')
             elif (self.auditResult != ""):
                 appendToReport(self.auditResult + ',')
@@ -141,11 +141,11 @@ class auditObjectAtom():
     currentValue = ""
     targetValue = ""
 
-    auditPassed = False
+    auditPassed = 0
     auditResult = ""
 
-    titledAlready = False
-    reportedAlready = False
+    titledAlready = 0
+    reportedAlready = 0
 
     def __init__(self, servername, port, username, password, auditTitle, cliVector, cliProperty, targetValue, bApplyTargetValue):
         self.servername = servername
@@ -155,11 +155,12 @@ class auditObjectAtom():
         self.cliVector = cliVector
         self.cliProperty = cliProperty
         self.targetValue = str(targetValue)
+        self.port = port
 
-        self.auditPassed = False
+        self.auditPassed = 0
  
         self.returnResult = self.audit()
-        if ((self.auditPassed == False) & (bApplyTargetValue)):
+        if ((self.auditPassed == 0) & (bApplyTargetValue)):
             self.applyTargetValue()
             self.audit()
 
@@ -186,11 +187,11 @@ class auditObjectAtom():
 
     def applyTargetValue(self):
         print 'On Server: ' + self.servername + ' Applying : ' + self.auditTitle + '...'
-        result = setParameterValue(self.servername, self.username, self.password, self.cliVector, self.cliProperty, self.targetValue)
+        result = setParameterValue(self.servername, self.port, self.username, self.password, self.cliVector, self.cliProperty, self.targetValue)
         if (result == True) :
             self.auditPassed = result
         else:
-            self.auditPassed = False
+            self.auditPassed = 0
             self.auditResult = "Unknown"
             print 'Setting value: ' + self.targetValue + ' ' + self.auditTitle + ' for server: ' + self.servername + '...FAILED'
 
@@ -213,14 +214,14 @@ class auditObjectAtom():
                 self.auditPassed = True
             else:
                 print 'Auditing: ' + self.auditTitle + '...FAILED.'
-                self.auditPassed = False
+                self.auditPassed = 0
         else :
             if (stripQuotes(self.targetValue) in self.currentValue):
                 print 'Auditing: ' + self.auditTitle + '...Passed.'
                 self.auditPassed = True
             else:
                 print 'Auditing: ' + self.auditTitle + '...FAILED.'
-                self.auditPassed = False
+                self.auditPassed = 0
 
         self.auditWriteAudit()
 
@@ -232,7 +233,7 @@ class auditObjectAtom():
         if not(self.reportedAlready) :
             if (self.auditPassed) :
                 appendToReport('...' + ',')
-            elif (self.auditResult == 'False') :
+            elif (self.auditResult == '0') :
                 appendToReport(str('ToDo') + ',')
             elif (str(self.auditResult) == 'Unknown') :
                 appendToReport("ToDo" + ',')

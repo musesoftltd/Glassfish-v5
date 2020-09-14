@@ -8,7 +8,7 @@ from environmentProperties.localhost.properties import dictionary
 from library.auditing.auditServersBase import auditServersBase
 from library.auditing.auditingLibrary import auditInitAudit
 
-bApplyRequiredChanges = False
+bApplyRequiredChanges = 1
 auditInitAudit("localhost", "GlassFishGeneral")
 auditServersBase("local servers", servers, dictionary, bApplyRequiredChanges)
 
