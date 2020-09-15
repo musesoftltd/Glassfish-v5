@@ -154,6 +154,7 @@ class auditObjectAtom():
         self.cliVector = cliVector
         self.cliProperty = cliProperty
         self.targetValue = str(targetValue)
+        self.port = port
 
         self.auditPassed = False
  
